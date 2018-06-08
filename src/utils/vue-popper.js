@@ -180,7 +180,7 @@ export default {
         arrow.setAttribute(hash, '');
       }
       arrow.setAttribute('x-arrow', '');
-      arrow.className = 'popper__arrow';
+      // arrow.className = 'popper__arrow';
       element.appendChild(arrow);
     }
   },

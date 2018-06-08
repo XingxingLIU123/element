@@ -58,17 +58,17 @@
   }
 
   @include e(header-label) {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     padding: 0 5px;
-    line-height: 22px;
+    line-height: 25px;
     text-align: center;
-    cursor: pointer;
-    color: $--color-text-regular;
-
-    &:hover {
-      color: $--datepicker-text-hover-color;
-    }
+    // cursor: pointer;
+    // color: $--color-text-regular;
+    color: #333;
+    // &:hover {
+    //   color: $--datepicker-text-hover-color;
+    // }
 
     &.active {
       color: $--datepicker-active-color;

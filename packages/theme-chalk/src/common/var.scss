@@ -72,7 +72,7 @@ $--border-radius-circle: 100% !default;
 -------------------------- */
 $--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
 $--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
-$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+$--box-shadow-light: 0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12),0px 5px 5px -3px rgba(0,0,0,0.2) !default;
 
 /* Fill
 -------------------------- */
@@ -612,7 +612,8 @@ $--rate-icon-color: $--color-text-placeholder !default;
 /* DatePicker
 --------------------------*/
 $--datepicker-color: $--color-text-regular !default;
-$--datepicker-off-color: $--color-text-placeholder !default;
+// $--datepicker-off-color: $--color-text-placeholder !default;
+$--datepicker-off-color: #999;
 $--datepicker-header-color: $--color-text-regular !default;
 $--datepicker-icon-color: $--color-text-primary !default;
 $--datepicker-border-color: $--disabled-border-base !default;

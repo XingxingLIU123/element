@@ -9,7 +9,7 @@
     <tbody>
     <tr>
       <th v-if="showWeekNumber">{{ t('el.datepicker.week') }}</th>
-      <th v-for="week in WEEKS">{{ t('el.datepicker.weeks.' + week) }}</th>
+      <th v-for="week in WEEKS" style="font-size: 14px;color: #666;">{{ t('el.datepicker.weeks.' + week) }}</th>
     </tr>
     <tr
       class="el-date-table__row"
@@ -207,7 +207,8 @@
         }
 
         rows.firstDayPosition = firstDayPosition;
-
+        console.log(this.month)
+        console.log(this.year)
         return rows;
       }
     },
@@ -454,7 +455,6 @@
             if (newDate >= this.minDate) {
               const maxDate = new Date(newDate.getTime());
               this.rangeState.selecting = false;
-
               this.$emit('pick', {
                 minDate: this.minDate,
                 maxDate
@@ -467,7 +467,6 @@
             }
           } else if (!this.minDate) {
             const minDate = new Date(newDate.getTime());
-
             this.$emit('pick', { minDate, maxDate: this.maxDate }, false);
             this.rangeState.selecting = true;
             this.markRange(this.minDate);
@@ -496,7 +495,7 @@
               }
             });
           }
-
+          console.log('selectedDate:', selectedDate)
           this.$emit('select', selectedDate);
         }
       }

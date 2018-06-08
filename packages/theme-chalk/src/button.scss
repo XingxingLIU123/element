@@ -27,8 +27,7 @@
 
   @include button-size($--button-padding-vertical, $--button-padding-horizontal, $--button-font-size, $--button-border-radius);
 
-  &:hover,
-  &:focus {
+  &:hover{
     color: $--color-primary;
     border-color: $--color-primary-light-7;
     background-color: $--color-primary-light-9;

@@ -20,6 +20,7 @@
         <slot name="prepend"></slot>
       </div>
       <input
+        :class="[mini ? 'tb-input-mini' : '']"
         :tabindex="tabindex"
         v-if="type !== 'textarea'"
         class="el-input__inner"
@@ -38,6 +39,7 @@
         @change="handleChange"
         :aria-label="label"
       >
+      <dd class="tb-input-mini-border" v-if="mini"></dd>
       <!-- 前置内容 -->
       <span class="el-input__prefix" v-if="$slots.prefix || prefixIcon" :style="prefixOffset">
         <slot name="prefix"></slot>
@@ -136,6 +138,10 @@
     },
 
     props: {
+      mini: {
+        type: Boolean,
+        default: false
+      },
       value: [String, Number],
       size: String,
       resize: String,

@@ -8,6 +8,20 @@
         'has-time': showTime
       }, popperClass]">
       <div class="el-picker-panel__body-wrapper">
+        <button
+          type="button"
+          @click="prevMonth"
+          v-show="currentView === 'date'"
+          :aria-label="t(`el.datepicker.prevMonth`)"
+          class="tb-datepicker-btn el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-arrow-left">
+        </button>
+        <button
+          type="button"
+          @click="nextMonth"
+          v-show="currentView === 'date'"
+          :aria-label="t(`el.datepicker.nextMonth`)"
+          class="tb-datepicker-btn el-picker-panel__icon-btn el-date-picker__next-btn el-icon-arrow-right">
+        </button>
         <slot name="sidebar" class="el-picker-panel__sidebar"></slot>
         <div class="el-picker-panel__sidebar" v-if="shortcuts">
           <button
@@ -45,44 +59,34 @@
             </span>
           </div>
           <div
-            class="el-date-picker__header"
+            class="el-date-picker__header tb-datepicker"
             :class="{ 'el-date-picker__header--bordered': currentView === 'year' || currentView === 'month' }"
             v-show="currentView !== 'time'">
+           <!-- tb fix hide year btn -->
             <button
               type="button"
+              v-if="showYearBtn"
               @click="prevYear"
               :aria-label="t(`el.datepicker.prevYear`)"
               class="el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-d-arrow-left">
             </button>
-            <button
-              type="button"
-              @click="prevMonth"
-              v-show="currentView === 'date'"
-              :aria-label="t(`el.datepicker.prevMonth`)"
-              class="el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-arrow-left">
-            </button>
+            <!-- tb fix prevent click show year picker -->
             <span
-              @click="showYearPicker"
               role="button"
               class="el-date-picker__header-label">{{ yearLabel }}</span>
+            <!-- tb fix prevent click show month picker -->
             <span
-              @click="showMonthPicker"
               v-show="currentView === 'date'"
               role="button"
               class="el-date-picker__header-label"
               :class="{ active: currentView === 'month' }">{{t(`el.datepicker.month${ month + 1 }`)}}</span>
+            <!-- tb fix hide year btn -->
             <button
+              v-if="showYearBtn"
               type="button"
               @click="nextYear"
               :aria-label="t(`el.datepicker.nextYear`)"
               class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-d-arrow-right">
-            </button>
-            <button
-              type="button"
-              @click="nextMonth"
-              v-show="currentView === 'date'"
-              :aria-label="t(`el.datepicker.nextMonth`)"
-              class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-arrow-right">
             </button>
           </div>
 
@@ -490,6 +494,7 @@
 
     data() {
       return {
+        showYearBtn: false,
         popperClass: '',
         date: new Date(),
         value: '',
@@ -579,3 +584,29 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+@mixin absolute-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.tb-datepicker{
+  position: relative;
+  &-btn{
+    @include absolute-center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12),0px 5px 5px -3px rgba(0,0,0,0.2);
+    &:nth-child(1) {
+      left: -20px;
+    }
+    &:nth-child(2) {
+      right: -20px;
+    }
+  }
+}
+</style>

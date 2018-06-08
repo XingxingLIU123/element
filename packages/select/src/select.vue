@@ -439,13 +439,14 @@
       },
       handleQueryChange(val) {
         if (this.previousQuery === val || this.isOnComposition) return;
-        if (
-          this.previousQuery === null &&
-          (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
-        ) {
-          this.previousQuery = val;
-          return;
-        }
+        // if (
+        //   this.previousQuery === null &&
+        //   (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
+        // ) {
+        //   this.previousQuery = val;
+        //   return;
+        // }
+        console.log(this.previousQuery, val)
         this.previousQuery = val;
         this.$nextTick(() => {
           if (this.visible) this.broadcast('ElSelectDropdown', 'updatePopper');
