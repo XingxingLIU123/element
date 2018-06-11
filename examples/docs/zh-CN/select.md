@@ -132,10 +132,103 @@
     width: 240px;
   }
 </style>
-
 ## Select 选择器
 
 当选项过多时，使用下拉菜单展示并选择内容。
+
+### 天宝-可搜索
+
+可以利用搜索功能快速查找选项
+
+:::demo 为`el-select`添加`filterable`属性即可启用搜索功能。默认情况下，Select 会找出所有`label`属性包含输入值的选项。如果希望使用其他的搜索逻辑，可以通过传入一个`filter-method`来实现。`filter-method`为一个`Function`，它会在输入值发生变化时调用，参数为当前输入值。
+```html
+<template>
+  <div style="background: #ddd;padding: 10px;">
+    <el-select
+    v-model="value9"
+    filterable
+    remote
+    :mini="true"
+    reserve-keyword
+    placeholder="请输入关键词"
+    :remote-method="remoteMethod"
+    :loading="loading">
+    <el-option
+      v-for="item in options4"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        mini: true,
+        options4: [],
+        value9: '',
+        list: [],
+        loading: false,
+        states: ["Alabama", "Alaska", "Arizona",
+        "Arkansas", "California", "Colorado",
+        "Connecticut", "Delaware", "Florida",
+        "Georgia", "Hawaii", "Idaho", "Illinois",
+        "Indiana", "Iowa", "Kansas", "Kentucky",
+        "Louisiana", "Maine", "Maryland",
+        "Massachusetts", "Michigan", "Minnesota",
+        "Mississippi", "Missouri", "Montana",
+        "Nebraska", "Nevada", "New Hampshire",
+        "New Jersey", "New Mexico", "New York",
+        "North Carolina", "North Dakota", "Ohio",
+        "Oklahoma", "Oregon", "Pennsylvania",
+        "Rhode Island", "South Carolina",
+        "South Dakota", "Tennessee", "Texas",
+        "Utah", "Vermont", "Virginia",
+        "Washington", "West Virginia", "Wisconsin",
+        "Wyoming"]
+      }
+    },
+    methods: {
+      remoteMethod(query) {
+        if (query === '') {
+          this.options = [
+            {
+              value: '选项1',
+              label: '黄金糕'
+            }, {
+              value: '选项2',
+              label: '双皮奶'
+            }, {
+              value: '选项3',
+              label: '蚵仔煎'
+            }, {
+              value: '选项4',
+              label: '龙须面'
+            }, {
+              value: '选项5',
+              label: '北京烤鸭'
+            }
+          ]
+        } else {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.options4 = this.list.filter(item => {
+              return item.label.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1;
+            });
+          }, 200);
+        }
+      }
+    }
+  }
+</script>
+```
+:::
+
 
 ### 基础用法
 
@@ -492,7 +585,7 @@
 :::demo 为`el-select`添加`filterable`属性即可启用搜索功能。默认情况下，Select 会找出所有`label`属性包含输入值的选项。如果希望使用其他的搜索逻辑，可以通过传入一个`filter-method`来实现。`filter-method`为一个`Function`，它会在输入值发生变化时调用，参数为当前输入值。
 ```html
 <template>
-  <el-select v-model="value8" filterable placeholder="请选择">
+  <el-select v-model="value8" :mini="true" filterable placeholder="请选择">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -558,7 +651,22 @@
   export default {
     data() {
       return {
-        options4: [],
+        options4: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
         value9: [],
         list: [],
         loading: false,

@@ -55,7 +55,7 @@ export default {
 
   data() {
     return {
-      showPopper: false,
+      showPopper: true,
       currentPlacement: ''
     };
   },

@@ -72,6 +72,7 @@
       ref="reference"
       v-model="selectedLabel"
       type="text"
+      :mini="mini"
       :placeholder="currentPlaceholder"
       :name="name"
       :id="id"
@@ -98,6 +99,12 @@
       <i slot="suffix"
        :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"
        @click="handleIconClick"
+       v-if="!mini"
+      ></i>
+      <i slot="suffix"
+       style="color: #fff;"
+       :class="['el-input__icon', 'el-icon-loading']"
+       v-if="searchLoading && filterable"
       ></i>
     </el-input>
     <transition
@@ -107,7 +114,7 @@
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
-        v-show="visible && emptyText !== false">
+        v-show="visible">
         <el-scrollbar
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
@@ -212,7 +219,7 @@
         if (this.loading) {
           return this.loadingText || this.t('el.select.loading');
         } else {
-          if (this.remote && this.query === '' && this.options.length === 0) return false;
+          // if (this.remote && this.query === '' && this.options.length === 0) return false;
           if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
             return this.noMatchText || this.t('el.select.noMatch');
           }
@@ -255,6 +262,7 @@
     directives: { Clickoutside },
 
     props: {
+      mini: Boolean,
       name: String,
       id: String,
       value: {
@@ -304,6 +312,7 @@
 
     data() {
       return {
+        searchLoading: false,
         options: [],
         cachedOptions: [],
         createdLabel: null,
@@ -408,7 +417,7 @@
         this.$emit('visible-change', val);
       },
 
-      options() {
+      options(val) {
         if (this.$isServer) return;
         this.$nextTick(() => {
           this.broadcast('ElSelectDropdown', 'updatePopper');
@@ -438,15 +447,20 @@
         }
       },
       handleQueryChange(val) {
+        console.log('emptyText:', this.emptyText);
+        console.log('allowCreate:', this.allowCreate);
+        console.log('loading:', this.loading);
+        console.log('options:', this.options);
+        if (val === '') {
+          this.searchLoading = false;
+        }
         if (this.previousQuery === val || this.isOnComposition) return;
-        // if (
-        //   this.previousQuery === null &&
-        //   (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
-        // ) {
-        //   this.previousQuery = val;
-        //   return;
-        // }
-        console.log(this.previousQuery, val)
+        if (
+          this.previousQuery === null &&
+          (typeof this.filterMethod === 'function' || typeof this.remoteMethod === 'function')
+        ) {
+          this.previousQuery = val;
+        }
         this.previousQuery = val;
         this.$nextTick(() => {
           if (this.visible) this.broadcast('ElSelectDropdown', 'updatePopper');

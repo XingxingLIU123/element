@@ -207,8 +207,6 @@
         }
 
         rows.firstDayPosition = firstDayPosition;
-        console.log(this.month)
-        console.log(this.year)
         return rows;
       }
     },
@@ -495,7 +493,6 @@
               }
             });
           }
-          console.log('selectedDate:', selectedDate)
           this.$emit('select', selectedDate);
         }
       }

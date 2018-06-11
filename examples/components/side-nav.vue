@@ -271,7 +271,6 @@
       }
     },
     created() {
-      console.log(this.data)
       bus.$on('fadeNav', () => {
         this.isFade = true;
       });
