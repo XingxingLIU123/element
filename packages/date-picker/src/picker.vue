@@ -5,6 +5,7 @@
     :readonly="!editable || readonly || type === 'dates'"
     :disabled="pickerDisabled"
     :size="pickerSize"
+    :mini="mini"
     :name="name"
     v-bind="firstInputId"
     v-if="!ranged"
@@ -341,6 +342,7 @@ export default {
   },
 
   props: {
+    mini: Boolean,
     size: String,
     format: String,
     valueFormat: String,

@@ -10,7 +10,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: $--select-option-color;
-    height: $--select-option-height;
+    // height: $--select-option-height;
+    height: auto;
     line-height: $--select-option-height;
     box-sizing: border-box;
     cursor: pointer;

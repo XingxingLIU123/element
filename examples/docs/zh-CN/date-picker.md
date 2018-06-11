@@ -134,6 +134,7 @@
   <div class="block">
     <span class="demonstration">带快捷选项</span>
     <el-date-picker
+      :mini="true"
       v-model="value2"
       align="right"
       type="date"

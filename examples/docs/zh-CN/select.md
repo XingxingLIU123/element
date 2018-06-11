@@ -197,7 +197,7 @@
           this.options = [
             {
               value: '选项1',
-              label: '黄金糕'
+              label: '<p>黄金糕</p>'
             }, {
               value: '选项2',
               label: '双皮奶'
@@ -296,7 +296,7 @@
       return {
         options2: [{
           value: '选项1',
-          label: '黄金糕'
+          label: '<p>黄金糕</p>'
         }, {
           value: '选项2',
           label: '双皮奶',

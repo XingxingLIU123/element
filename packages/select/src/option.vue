@@ -10,7 +10,7 @@
       'hover': hover
     }">
     <slot>
-      <span>{{ currentLabel }}</span>
+      <span v-html="currentLabel"></span>
     </slot>
   </li>
 </template>
@@ -56,6 +56,7 @@
       },
 
       currentLabel() {
+        console.log(this.label)
         return this.label || (this.isObject ? '' : this.value);
       },
 

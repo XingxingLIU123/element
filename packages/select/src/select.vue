@@ -447,10 +447,6 @@
         }
       },
       handleQueryChange(val) {
-        console.log('emptyText:', this.emptyText);
-        console.log('allowCreate:', this.allowCreate);
-        console.log('loading:', this.loading);
-        console.log('options:', this.options);
         if (val === '') {
           this.searchLoading = false;
         }
