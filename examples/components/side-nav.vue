@@ -7,7 +7,9 @@
     &.is-fade {
       transition: opacity 3s;
     }
-
+    .tb-changed{
+      color: red!important;
+    }
     li {
       list-style: none;
     }
@@ -172,6 +174,7 @@
                 v-for="navItem in group.list"
                 v-if="!navItem.disabled">
                 <router-link
+                 :class="[navItem.isChanged ? 'tb-changed' : '']"
                   active-class="active"
                   :to="base + navItem.path"
                   exact
@@ -268,6 +271,7 @@
       }
     },
     created() {
+      console.log(this.data)
       bus.$on('fadeNav', () => {
         this.isFade = true;
       });

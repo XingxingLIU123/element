@@ -82,7 +82,8 @@
             },
             {
               "path": "/input",
-              "title": "Input 输入框"
+              "title": "Input 输入框",
+              "isChanged": true
             },
             {
               "path": "/input-number",
@@ -110,7 +111,8 @@
             },
             {
               "path": "/date-picker",
-              "title": "DatePicker 日期选择器"
+              "title": "DatePicker 日期选择器",
+              "isChanged": true
             },
             {
               "path": "/datetime-picker",

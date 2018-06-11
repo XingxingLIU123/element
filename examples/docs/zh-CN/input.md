@@ -184,11 +184,33 @@
 
 通过鼠标或键盘输入字符
 
+### 天宝-输入框
+
+:::demo
+```html
+<div style="background:#ddd;padding: 10px"> 
+<!-- 不必要的div, 默认为白色，为了看清楚 -->
+  <el-input v-model="input" :mini="true" placeholder="请输入内容"></el-input>
+</div>
+
+<script>
+export default {
+  data() {
+    return {
+      input: ''
+    }
+  }
+}
+</script>
+```
+:::
+
+
 ### 基础用法
 
 :::demo
 ```html
-<el-input v-model="input" :mini="true" placeholder="请输入内容"></el-input>
+<el-input v-model="input" placeholder="请输入内容"></el-input>
 
 <script>
 export default {
