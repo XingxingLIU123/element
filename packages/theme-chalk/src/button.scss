@@ -6,6 +6,7 @@
 
 @include b(button) {
   display: inline-block;
+  position: relative;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -26,17 +27,24 @@
   }
 
   @include button-size($--button-padding-vertical, $--button-padding-horizontal, $--button-font-size, $--button-border-radius);
-
-  &:hover{
-    color: $--color-primary;
-    border-color: $--color-primary-light-7;
-    background-color: $--color-primary-light-9;
+  &:after{
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background .2s;
+    border-radius: inherit;
+  }
+  &:hover:after{
+    background: rgba(0,0,0,0.1);
   }
 
-  &:active {
-    color: mix($--color-black, $--color-primary, $--button-active-shade-percent);
-    border-color: mix($--color-black, $--color-primary, $--button-active-shade-percent);
-    outline: none;
+  &:active:after {
+    background: rgba(0,0,0,0.1);
   }
 
   &::-moz-focus-inner {
@@ -50,8 +58,7 @@
   }
 
   @include when(plain) {
-    &:hover,
-    &:focus {
+    &:hover{
       background: $--color-white;
       border-color: $--color-primary;
       color: $--color-primary;
@@ -72,8 +79,7 @@
 
   @include when(disabled) {
     &,
-    &:hover,
-    &:focus {
+    &:hover{
       color: $--button-disabled-color;
       cursor: not-allowed;
       background-image: none;
@@ -87,8 +93,7 @@
 
     &.is-plain {
       &,
-      &:hover,
-      &:focus {
+      &:hover{
         background-color: $--color-white;
         border-color: $--button-disabled-border;
         color: $--button-disabled-color;
@@ -122,12 +127,17 @@
   }
   @include m(primary) {
     @include button-variant($--button-primary-color, $--button-primary-fill, $--button-primary-border);
+    background:linear-gradient(90deg,$--button-primary-fill,$--color-primary-light-1);
+    border-color: $--button-primary-fill;
   }
   @include m(success) {
     @include button-variant($--button-success-color, $--button-success-fill, $--button-success-border);
   }
   @include m(warning) {
     @include button-variant($--button-warning-color, $--button-warning-fill, $--button-warning-border);
+    background-color: $--button-warning-fill;
+    background:linear-gradient(90deg,#FFA900,#FFC20F);
+    border-color: transparent;
   }
   @include m(danger) {
     @include button-variant($--button-danger-color, $--button-danger-fill, $--button-danger-border);
