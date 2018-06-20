@@ -69,8 +69,8 @@ import Header from '../packages/header/index.js';
 import Aside from '../packages/aside/index.js';
 import Main from '../packages/main/index.js';
 import Footer from '../packages/footer/index.js';
-import locale from 'element-ui/src/locale';
-import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
+import locale from '../src/locale';
+import CollapseTransition from '../src/transitions/collapse-transition';
 
 const components = [
   Pagination,
@@ -172,7 +172,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 module.exports = {
-  version: '1.0.6',
+  version: '1.1.9',
   locale: locale.use,
   i18n: locale.i18n,
   install,

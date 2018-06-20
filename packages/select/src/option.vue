@@ -56,7 +56,6 @@
       },
 
       currentLabel() {
-        console.log(this.label)
         return this.label || (this.isObject ? '' : this.value);
       },
 
