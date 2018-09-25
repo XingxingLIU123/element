@@ -72,6 +72,7 @@
       },
 
       disabledDate: {},
+      inDate: {},
 
       selectedDate: {
         type: Array
@@ -133,6 +134,7 @@
 
         const startDate = this.startDate;
         const disabledDate = this.disabledDate;
+        const inDate = this.inDate;
         const selectedDate = this.selectedDate || this.value;
         const now = clearHours(new Date());
 
@@ -188,6 +190,7 @@
 
             let newDate = new Date(time);
             cell.disabled = typeof disabledDate === 'function' && disabledDate(newDate);
+            cell.inDate = typeof inDate === 'function' && inDate(newDate);
             cell.selected = Array.isArray(selectedDate) &&
               selectedDate.filter(date => date.toString() === newDate.toString())[0];
 
@@ -290,7 +293,12 @@
 
         if (cell.disabled) {
           classes.push('disabled');
+          classes.push('inDate');
         }
+
+        // if (cell.inDate) {
+        //   classes.push('inDate');
+        // }
 
         if (cell.selected) {
           classes.push('selected');
