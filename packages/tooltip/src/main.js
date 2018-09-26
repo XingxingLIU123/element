@@ -28,7 +28,7 @@ export default {
     popperClass: String,
     content: String,
     visibleArrow: {
-      default: true
+      default: false
     },
     transition: {
       type: String,

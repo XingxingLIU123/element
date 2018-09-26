@@ -67,7 +67,9 @@
     &.today {
       position: relative;
       span {
-        color: $--color-primary;
+        // color: #fff;
+        // border-radius: 50%;
+        // background: $--color-primary;
         font-weight: bold;
       }
       &.start-date span,
@@ -75,9 +77,14 @@
         color: $--color-white;
       }
     }
-
-    &.available:hover {
+    &.available span{
+      border: 1px solid transparent;
+    }
+    &.available:hover span {
+      // color: $--datepicker-text-hover-color;
       color: $--datepicker-text-hover-color;
+      border: 1px solid $--datepicker-text-hover-color;
+      border-radius: 50%;
     }
 
     &.in-range div {

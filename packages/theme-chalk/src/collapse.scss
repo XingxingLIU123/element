@@ -44,7 +44,7 @@
   }
 
   @include e(content) {
-    padding-bottom: 25px;
+    // padding-bottom: 25px;
     font-size: $--collapse-content-size;
     color: $--collapse-content-color;
     line-height: 1.769230769230769;

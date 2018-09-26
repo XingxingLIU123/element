@@ -9,7 +9,8 @@
 
   &.el-input,
   &.el-input__inner {
-    width: 220px;
+    // width: 220px;
+    width: auto;
   }
 
   @include m((daterange, timerange)) {

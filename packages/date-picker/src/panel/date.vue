@@ -596,6 +596,7 @@
   position: relative;
   &-btn{
     @include absolute-center;
+    z-index: 999;
     width: 40px;
     height: 40px;
     border-radius: 50%;
