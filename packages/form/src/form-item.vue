@@ -4,6 +4,7 @@
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
+      'is-message': validateState === 'message',
       'is-required': isRequired || required
     },
     sizeClass ? 'el-form-item--' + sizeClass : ''
@@ -17,6 +18,17 @@
         <div
           v-if="validateState === 'error' && showMessage && form.showMessage"
           class="el-form-item__error"
+          :class="{
+            'el-form-item__error--inline': typeof inlineMessage === 'boolean'
+              ? inlineMessage
+              : (elForm && elForm.inlineMessage || false)
+          }"
+        >
+          {{validateMessage}}
+        </div>
+        <div
+          v-if="validateState === 'message'"
+          class="el-form-item__message"
           :class="{
             'el-form-item__error--inline': typeof inlineMessage === 'boolean'
               ? inlineMessage
@@ -193,11 +205,17 @@
         model[this.prop] = this.fieldValue;
 
         validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
-          this.validateState = !errors ? 'success' : 'error';
-          this.validateMessage = errors ? errors[0].message : '';
-
-          callback(this.validateMessage, invalidFields);
-          this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+          if(errors[0].field === 'pass'){
+            this.validateState = 'message';
+            this.validateMessage = errors[0].message;
+            callback(this.validateMessage, invalidFields);
+            this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+          }else{
+            this.validateState = !errors ? 'success' : 'error';
+            this.validateMessage = errors ? errors[0].message : '';
+            callback(this.validateMessage, invalidFields);
+            this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+          }
         });
       },
       clearValidate() {

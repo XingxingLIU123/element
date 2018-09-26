@@ -100,6 +100,8 @@
               :value="new Date(value)"
               :default-value="defaultValue ? new Date(defaultValue) : null"
               :date="date"
+              :min-date="minDate"
+              :max-date="maxDate"
               :disabled-date="disabledDate"
               :selected-date="selectedDate">
             </date-table>
@@ -343,6 +345,9 @@
           this.date = this.value
             ? modifyDate(this.value, value.getFullYear(), value.getMonth(), value.getDate())
             : modifyWithTimeString(value, this.defaultTime);
+          if(this.inrange){
+            this.maxDate = value;
+          }
           this.emit(this.date, this.showTime);
         } else if (this.selectionMode === 'week') {
           this.emit(value.date);
@@ -503,6 +508,9 @@
         showTime: false,
         selectionMode: 'day',
         shortcuts: '',
+        inrange:{
+          start:''
+        },
         visible: false,
         currentView: 'date',
         disabledDate: '',
@@ -518,6 +526,10 @@
     },
 
     computed: {
+      minDate(){
+        return this.inrange.start;
+      },
+
       year() {
         return this.date.getFullYear();
       },
