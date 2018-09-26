@@ -205,9 +205,9 @@
         model[this.prop] = this.fieldValue;
 
         validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
-          if(errors[0].field === 'pass'){
+          if(errors && typeof errors[0].message === "object" ){
             this.validateState = 'message';
-            this.validateMessage = errors[0].message;
+            this.validateMessage = errors[0].message.msg;
             callback(this.validateMessage, invalidFields);
             this.elForm && this.elForm.$emit('validate', this.prop, !errors);
           }else{

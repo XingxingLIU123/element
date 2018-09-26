@@ -341,6 +341,7 @@
       },
 
       handleDatePick(value) {
+        if(Object.prototype.toString.call(value) === "[object Object]") return;
         if (this.selectionMode === 'day') {
           this.date = this.value
             ? modifyDate(this.value, value.getFullYear(), value.getMonth(), value.getDate())
@@ -352,6 +353,7 @@
         } else if (this.selectionMode === 'week') {
           this.emit(value.date);
         }
+
       },
 
       handleYearPick(year) {
