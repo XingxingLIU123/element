@@ -217,7 +217,8 @@
             },
             {
               "path": "/steps",
-              "title": "Steps 步骤条"
+              "title": "Steps 步骤条",
+              "isChanged": true
             }
           ]
         },
@@ -230,7 +231,8 @@
             },
             {
               "path": "/tooltip",
-              "title": "Tooltip 文字提示"
+              "title": "Tooltip 文字提示",
+              "isChanged": true
             },
             {
               "path": "/popover",
@@ -238,7 +240,8 @@
             },
             {
               "path": "/card",
-              "title": "Card 卡片"
+              "title": "Card 卡片",
+              "isChanged": true
             },
             {
               "path": "/carousel",

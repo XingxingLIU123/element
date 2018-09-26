@@ -21,17 +21,15 @@
 
       <div class="el-step__icon" :class="`is-${icon ? 'icon' : 'text'}`">
         <slot
-          v-if="currentStatus !== 'success' && currentStatus !== 'error'"
           name="icon">
           <i v-if="icon" class="el-step__icon-inner" :class="[icon]"></i>
-          <div class="el-step__icon-inner" v-if="!icon && !isSimple">{{ index + 1 }}</div>
+          <div class="el-step__icon-inner" v-if="!icon">{{ index + 1 }}</div>
         </slot>
-        <i
+        <!-- <i
           v-else
-          :class="['el-icon-' + (currentStatus === 'success' ? 'check' : 'close')]"
           class="el-step__icon-inner is-status"
-        >
-        </i>
+        >{{ index + 1 }}
+        </i> -->
       </div>
     </div>
     <!-- title & description -->
