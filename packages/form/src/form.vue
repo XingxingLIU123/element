@@ -107,9 +107,10 @@
           callback(true);
         }
         let invalidFields = {};
+
         this.fields.forEach(field => {
           field.validate('', (message, field) => {
-            if (message) {
+            if (message && typeof message !== "object") {
               valid = false;
             }
             invalidFields = objectAssign({}, invalidFields, field);

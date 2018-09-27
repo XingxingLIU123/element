@@ -2,6 +2,11 @@
   module.exports = {
     data() {
       return {
+        options:{
+          inrange:{
+            start:new Date(new Date().getTime() - 3600 * 1000 * 24)
+          }
+        },
         pickerOptions1: {
           disabledDate(time) {
             return time.getTime() > Date.now();
@@ -128,7 +133,9 @@
     <el-date-picker
       v-model="value1"
       type="date"
-      placeholder="选择日期">
+      placeholder="选择日期"
+      :picker-options="options"
+      >
     </el-date-picker>
   </div>
   <div class="block">

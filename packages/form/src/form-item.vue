@@ -208,8 +208,8 @@
           if(errors && typeof errors[0].message === "object" ){
             this.validateState = 'message';
             this.validateMessage = errors[0].message.msg;
-            callback(this.validateMessage, invalidFields);
-            this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+            callback(errors[0].message, null);
+            this.elForm && this.elForm.$emit('validate', this.prop,true);
           }else{
             this.validateState = !errors ? 'success' : 'error';
             this.validateMessage = errors ? errors[0].message : '';

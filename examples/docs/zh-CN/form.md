@@ -24,7 +24,7 @@
           if (this.ruleForm2.checkPass !== '') {
             this.$refs.ruleForm2.validateField('checkPass');
           }
-          callback(123456);
+          callback({msg:'123'});
         }
       };
       var validatePass2 = (rule, value, callback) => {
@@ -136,6 +136,7 @@
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
+          debugger
           if (valid) {
             alert('submit!');
           } else {

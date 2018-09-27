@@ -138,7 +138,8 @@
             },
             {
               "path": "/form",
-              "title": "Form 表单"
+              "title": "Form 表单",
+              "isChanged": true
             }
           ]
         },
